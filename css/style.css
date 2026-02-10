@@ -1,0 +1,832 @@
+@charset "UTF-8";
+
+/* 変数定義 */
+:root{
+    --themecolor:#FFFBDE;
+    --expcolor:#D4C3BA;
+    --ycolor:#FBEDB5;
+}
+
+
+/* body 基本設定*/
+body{
+    font-family: "Sawarabi Mincho", serif;
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--themecolor);
+    background-color: #1D1B0C;
+}
+
+h1, h2, h3{
+    color: var(--themecolor);
+}
+
+.container{
+    padding: 0 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* header */
+header{
+    background-color: #2A0B0B;
+    height: 70px;
+}
+
+.header-inner{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo a{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 0;
+    font-size: 20px;
+    color: var(--ycolor);
+}
+
+.logo img{
+    width: 55px;
+    height: auto;
+}
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.nav-list{
+    display: flex;
+    gap: 2rem;
+    font-size: 16px;
+    align-items: center;
+    color: var(--themecolor);
+}
+
+.nav-list li:hover{
+  color: #ffc0b1;
+}
+
+/* ハンバーガー */
+.ham{
+    width: 40px;
+    height: 40px;
+    display: flex;
+    flex-direction: column; /*これ使ったらjustify-contentとalign-itemがぎゃくになる*/
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    display: none; /* pcでは非表示 */
+}
+
+.bar{
+    width: 80%;
+    height: 2px;
+    background-color: var(--themecolor);
+    transition: 0.3s
+}
+
+.ham.active .bar:nth-child(1) { /*1本目の線*/
+    transform: translateY(10px) rotate(45deg);
+}
+
+.ham.active .bar:nth-child(2) { /*2本目の線*/
+    transform: translateY(100px);
+    opacity: 0;
+}
+
+.ham.active .bar:nth-child(3) { /*3本目の線*/
+    transform: translateY(-10px) rotate(-45deg);
+}
+
+/* cart-icon */
+.cart-icon {
+  position: relative;
+  display: inline-block;
+}
+
+#cart-count {
+  position: absolute;
+  top: -6px;
+  right: -8px;
+  background: #fffbde;
+  color: #2A0B0B;
+  font-size: 12px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+/* カート０の時は非表示 */
+#cart-count.is-hidden {
+  display: none;
+}
+
+.header-nav a:hover {
+  color: #ffc0b1;
+}
+
+.cart-icon:hover img {
+  opacity: 0.8;
+}
+
+/* main mainvisual*/
+.mainvisual{
+    position: relative;
+    height: 100vh;
+}
+
+.mainvisual img{
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+}
+
+.main-text{
+    position: absolute;
+    bottom: 20%;
+    left: 8%;
+    color: #f5f2e8;
+
+}
+
+.main-text h1{
+    font-size: 36px;
+    margin-bottom: 20px;
+    letter-spacing: 0.2em;
+}
+
+/* aboutブラー */
+.inview.fadeup {
+	opacity: 0;
+	transition-duration: 2.5s;
+	transform: translateY(50px);
+}
+.inview.fadeup.active {
+	opacity: 1;
+	transform: translateY(0px);
+}
+
+/* スクロールダウンの位置 */
+.scroll {
+  position: absolute;
+  left: 80vw;
+  writing-mode: vertical-rl;
+}
+
+/* 線のアニメーション部分 */
+.scroll::before {
+  animation: scroll 2s infinite;
+  background-color: var(--themecolor);
+  bottom: -105px;
+  content: "";
+  height: 100px;
+  left: 0;
+  margin: auto;
+  position: absolute;
+  right: 0;
+  width: 1px;
+}
+
+/* 線のアニメーション */
+@keyframes scroll {
+  0% {
+    transform: scale(1, 0);
+    transform-origin: 0 0;
+  }
+  50% {
+    transform: scale(1, 1);
+    transform-origin: 0 0;
+  }
+  51% {
+    transform: scale(1, 1);
+    transform-origin: 0 100%;
+  }
+  100% {
+    transform: scale(1, 0);
+    transform-origin: 0 100%;
+  }
+}
+
+/* about */
+.about{
+    padding: 30vh 0;
+}
+
+.about .container{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.about-img img{
+  width: 100%;
+  max-width: 600px;
+  border-radius: 20px;
+}
+
+.about-text .about-title{
+    font-size: 24px;
+    font-weight: normal;
+    color: var(--ycolor);
+}
+
+.about-text h2{
+    font-size: 32px;
+    margin-bottom: 60px;
+    
+}
+
+.about p{
+    font-size: 18px;
+    padding-top: 20px;
+}
+
+/* ice-img パララックス*/
+.parallax_content{
+  display: flex;
+  height: 400px;
+  justify-content: center;
+  align-items: center;
+
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.img_bg_01{
+  background-image: url(../images/showcase.png);
+}
+
+
+/* menu */
+.menu{
+    margin: 100px 0;
+}
+
+.menu-inner{
+    max-width: 1100px;
+    margin: 0 auto;
+   background-color: #2e1a1a;
+   border-radius: 10px;
+}
+
+/* menu text */
+.menu h2{
+    font-size: 36px;
+    text-align: center;
+    padding-top: 100px;
+}
+
+.menu-price ul {
+    display: flex;
+    justify-content: center;
+    color: var(--expcolor);
+}
+
+.menu-price ul li{
+    margin: 10px 20px;
+}
+
+/* menu-ice */
+
+.menu-ice{
+    padding-top: 10vh;
+}
+
+.menu-ice ul{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.menu-ice ul li{
+    width: 33.3%;
+    text-align: center;
+    margin-bottom: 20vh;
+} 
+
+.menu-ice ul li img{
+    width: 200px;
+    height: auto;
+    transition: transform .6s ease; /* ゆっくり変化させる */
+}
+
+.menu-ice ul li:hover img {
+  transform: scale(1.1); /* 拡大 */
+}
+
+.ice-name{
+    font-size: 20px;
+    padding: 20px;
+}
+
+.ice-exp{
+    font-size: 16px;
+    color: var(--expcolor);
+}
+
+/* カップ・コーン */
+.menu-end{
+    padding-bottom: 100px;
+}
+
+.menu-end h3{
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.menu-select ul{
+    display: flex;
+    justify-content: center;
+    gap: 80px;
+}
+
+.menu-select li {
+  width: 200px;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-select li:hover img {
+  transform: scale(1.3); /* 拡大 */
+}
+
+/* 画像は比率を保って収める */
+.menu-select li img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+
+/* online */
+.online{
+    margin: 100px 0;
+}
+
+.online-inner{
+    max-width: 1100px;
+    margin: 0 auto;
+    background-color: #1D2D20;
+    text-align: center;
+    padding-bottom: 100px;
+    border-radius: 10px;
+}
+
+.online-inner h2{
+    font-size: 36px;
+    padding-top: 100px;
+}
+
+.online-exp{
+    margin: 30px 0;
+    color: var(--expcolor);
+}
+
+.online-exp .top{
+    padding-bottom: 30px;
+}
+
+.online-price{
+    color: var(--themecolor);
+    padding: 50px 0;
+    font-size: 20px;
+}
+
+/* cup-img */
+.cup-img ul{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.cup-img ul li{
+    width: 33.3%;
+    text-align: center;
+    margin-bottom: 20vh;
+
+}
+
+.cup-img ul li img{
+    width: 230px;
+    height: auto;
+    transition: transform .6s ease; /* ゆっくり変化させる */
+}
+
+.cup-img ul li:hover img {
+  transform: scale(1.1); /* 拡大 */
+}
+
+.cup-img ul li .ice-name{
+    font-size: 20px;
+    padding: 20px;
+}
+
+/* カートに入れるボタン */
+.add-cart-wrap {
+  margin-top: 24px;
+  text-align: center;
+  position: relative;
+  display: inline-block;
+}
+
+
+.add-cart {
+  display: inline-block;
+  background-color: #e3dbbc;
+  color: #2A0B0B;
+  padding: 18px 80px;
+  text-decoration: none;
+  border-radius: 8px;
+  box-shadow: #190606 ;
+}
+
+/* added!表示 */
+.added-message {
+  position: absolute;
+  top: -24px;
+  right: 0;
+  font-size: 12px;
+  color: #2A0B0B;
+  background: #fffbde;
+  padding: 2px 6px;
+  border-radius: 6px;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+}
+
+/* 表示用 */
+.added-message.is-show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+.add-cart:hover{
+  opacity: .75;
+}
+
+.shipping-notes {
+  margin-top: 32px;
+  font-size: 12px;
+  color: #bcb9b9;
+}
+
+/* count btn */
+.qty {
+    background: #fffbde;
+    border-radius: 10px;
+    display: flex;
+    width: fit-content;
+    margin: 20px auto;
+}
+
+.down, .up {
+    font-size: 25px;
+    padding: 0 14px;
+    cursor: pointer;
+    user-select: none;
+    color: #2A0B0B;
+    font-weight: bold;
+}
+
+.down:hover,
+.up:hover{
+  opacity: .5;
+}
+
+.textBox {
+    border: none;
+    background: none;
+    font-size: 18px;
+    text-align: center;
+    width: 60px;
+    color: #2A0B0B;
+}
+
+/* [input type="number"]のデフォルトの矢印を消す */
+input[type="number"]::-webkit-outer-spin-button, 
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none; 
+    margin: 0; 
+    -moz-appearance:textfield; 
+} 
+
+
+/* footer */
+footer {
+  background-color: #190606;
+  color: var(--themecolor);
+  height: 220px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* 上下に分ける */
+  align-items: center;            /* 横中央 */
+
+  padding: 24px 0;
+}
+
+/* 住所ブロック */
+footer .access {
+  text-align: center;
+  line-height: 1.8;
+}
+
+/* コピーライト */
+.copylight {
+  font-size: 12px;
+}
+
+
+/* topへbtn */
+
+/*リンクの形状*/
+#page-top a{
+	display: flex;
+	justify-content:center;
+	align-items:center;
+	background:#190606;
+	border-radius: 20px;
+	width: 60px;
+	height: 60px;
+	color: var(--ycolor);
+	text-align: center;
+	text-transform: uppercase; 
+	text-decoration: none;
+	font-size:0.7rem;
+	transition:all 0.3s;
+}
+
+#page-top a:hover{
+	background: #685b5b;
+}
+
+/*リンクを右下に固定*/
+#page-top {
+	position: fixed;
+	right: 10px;
+	bottom:10px;
+	z-index: 2;
+    /*はじめは非表示*/
+	opacity: 0;
+	transform: translateY(100px);
+}
+
+/*　上に上がる動き　*/
+
+#page-top.UpMove{
+	animation: UpAnime 0.5s forwards;
+}
+
+@keyframes UpAnime{
+  from {
+    opacity: 0;
+	transform: translateY(100px);
+  }
+  to {
+    opacity: 1;
+	transform: translateY(0);
+  }
+}
+
+/*　下に下がる動き　*/
+
+#page-top.DownMove{
+	animation: DownAnime 0.5s forwards;
+}
+@keyframes DownAnime{
+  from {
+  	opacity: 1;
+	transform: translateY(0);
+  }
+  to {
+  	opacity: 1;
+	transform: translateY(100px);
+  }
+}
+
+
+/* ------------レスポンシブ対応------------- */
+@media screen and (max-width: 700px) {
+body{
+  font-size: 14px;
+}
+
+.online{
+  margin: 50px 0;
+}
+
+.mainvisual,
+.mainvisual img {
+    height: 80vh;
+  }
+
+.logo img{
+  width: 40px;
+  height: auto;
+  
+}
+.logo a{
+  font-size: 0;
+}
+
+.header-nav {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+.header-nav ul {
+    display: none;
+    position: fixed;
+    top: -100%;
+    left: 0;
+    background-color: #000;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    transition: 0.5s;
+  }
+
+header ul.active{
+    top: 0;
+    }
+
+.ham {
+    display: flex;
+    z-index: 99999;
+  }
+
+/*hamburger menu*/
+.nav-list{
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 70px;
+    right: 0;
+    width: 100%;
+    background: #2A0B0B;
+    padding: 20px 0;
+  }
+
+.nav-list.active{
+    display: flex;
+  }
+
+.menu h2, .online-inner h2{
+    padding-top: 30px;
+}
+
+.main-text {
+    top: auto;
+    bottom: 15%;
+    left: 5%;
+}
+
+.main-text h1 {
+    font-size: 24px;
+    letter-spacing: 0.1em;
+  }
+
+.about .container {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+.about {
+    padding: 100px 0;
+  }
+
+.about-text h2 {
+    font-size: 20px;
+    margin-bottom: 30px;
+  }
+
+.about p{
+    font-size: 15px;
+  }
+
+.menu{
+    margin: 50px 0;
+  }
+
+.menu h2,.online-inner h2{
+  font-size: 24px;
+}
+
+.menu-ice{
+  padding-top: 0;
+}
+
+.menu-price ul{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin: 10%;
+}
+
+.menu-price ul li{
+  margin: 0;
+}
+
+.menu-end{
+  padding-bottom: 0;
+}
+
+.ice-name{
+  font-size: 16px;
+  padding: 10px;
+}
+
+.ice-exp{
+  font-size: 14px;
+  padding: 10px;
+}
+
+.menu-ice ul li,
+.cup-img ul li {
+    width: 50%;
+    margin-bottom: 60px;
+  }
+
+.menu-ice ul li img,
+.cup-img ul li img {
+    width: 130px;
+  }
+
+.menu-end h3{
+  font-size: 15px;
+  margin: 0;
+  padding-top: 50px;
+}
+
+.menu-select ul{
+  gap: 0;
+}
+
+
+.menu-select li img{
+  max-width: 70%;
+  max-height: 70%;
+}
+
+.online-price{
+  padding: 25px 0;
+  font-size: 16px;
+}
+
+.cup-img ul li .ice-name{
+  font-size: 16px;
+  padding: 10px;
+}
+
+.pty{
+  margin: 10px 0;
+}
+
+.online-inner{
+  padding-bottom: 50px;
+}
+
+.add-cart{
+  padding: 10px 40px;
+}
+
+.down, .up {
+  padding: 0 10px;
+  font-size: 20px;
+}
+
+.textBox{
+  font-size: 16px;
+  width: 40px;
+}
+
+.parallax_box {
+    display: none;
+  }
+
+  .access p{
+    font-size: 13px;
+  }
+}
+
